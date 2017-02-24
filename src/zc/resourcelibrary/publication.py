@@ -102,7 +102,7 @@ class Response(BrowserResponse):
     def _implicitResult(self, body):
         #figure out the content type
         content_type = self.getHeader('content-type')
-        if content_type is None:
+        if content_type is None and self._status != 304:
             if isHTML(body):
                 content_type = 'text/html'
             else:
